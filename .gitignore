@@ -1,0 +1,11 @@
+**/.DS_STORE
+**/*.pyc
+**/*.swp
+MANIFEST
+*.egg-info
+__pycache__/
+._*
+.vscode/
+*.pyc
+.pytest_cache/
+*.sif

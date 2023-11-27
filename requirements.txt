@@ -1,0 +1,17 @@
+celluloid
+cma
+GitPython
+gymnasium
+matplotlib
+networkx
+numpy
+psutil
+pytest
+PyYAML
+scipy
+torch
+pre-commit
+moviepy
+powerlaw
+multiprocess
+dill

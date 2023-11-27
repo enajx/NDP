@@ -1,0 +1,102 @@
+##############
+# Experiment #
+##############
+dev_mode: 0
+project_name: Developmental networks
+group: default
+notes experiment: null
+device: 0
+return_loss: 0
+environment: CartPole-v1
+
+#########
+# Model #
+#########
+
+# Growth mode
+node_based_growth: True
+node_pairs_based_growth: False
+edge_based_growth: False
+probabilistic_growth: False
+coevolve_initial_embeddings: True
+
+# Graph model options
+undirected: True
+node_embedding_size: 10
+binary_connectivity: True
+additive_update: False
+
+# Growth model options
+persistent_observation_rollout: True
+number_of_growth_cycles: 4
+initial_embeddings_random: False # If False, embeddings are ones
+shared_intial_graph_bool: True # If False, a new different initial graph is generated at each env evaluation
+shared_intial_embedding: True # If False, a new different embedding is at each env evaluation
+initial_sparsity: 1
+self_link_allowed_during_querying: True
+
+extra_nodes: -1 # netowrk size = observation_dim + action_dim + extra nodes
+network_thinking_time_extra_growth: 0 # during groth: steps on top of the diamater of the diamater of the network
+network_thinking_time_extra_rollout: 2 # during env rollout: on top of the diamater of the diamater of the network during the environment rollout phase
+
+# Embedding transformation after each propagation step (like GNCA)
+NN_transform_node_embedding_during_growth: True
+
+# Prunning
+prunning_phase: False
+prunning_threshold: 0.3
+
+# Rewards and penalties
+fewer_edges: False # sparsity
+fewer_nodes: False # netowrk size
+balanced_weights: False
+
+# MLPs parameters
+growth_model_last_layer_activated: True
+transform_model_last_layer_activated: True # If true embeddings are bounded [-1,1]
+mlp_weight_values_last_layer_activated: True # If true graph weights are bounded [-1,1]
+
+mlp_growth_hidden_layers_dims: [10]
+mlp_embedding_transform_hidden_layers_dims: [10]
+mlp_weight_values_hidden_layers_dims: [10]
+
+growth_model_bias: True
+mlp_weight_values_bias: True
+transform_model_bias: True
+
+recurrent_activation_function: "tanh" #  null
+
+############################
+# Training hyperparameters #
+############################
+optimizer: CMAES
+sigma_init: 0.1
+maximise : True
+generations: 2000
+popsize: 512
+CMA_elitist: True
+minstd: 0.01
+x0_dist: U[-1,1]
+checkpoint_id: null
+nb_episode_evals: 10 # accounts for env stochasticity
+nb_growth_evals: 1 # accounts for growth process stochasticity
+early_stopping: True
+early_stopping_conditions: { "generation": 1000, "objective_value": -300 } # (generations, objective_value)
+flattening_stopping: False
+flattening_stopping_conditions: { "min_generation": 1500, "last_generations": 500, "min_std": 5 } # if after min_generation the last_generations have a std lower than min_std, we stop
+evolution_feval_check_every: 200 # evaluate the fitness every n generations on a large number of environments to account for stochasticity of env
+evolution_feval_check_N: 100 # number of times env should be evaluated
+reward_if_graph_too_small: 200
+threads: -1
+
+seed: null
+env_seed: null
+
+# Visualisation and monitoring
+save_model: 1
+render: 1
+print_every: 10
+visualise_network: 1
+histogram_degree: 0
+layout: random_fixed # shell, spectral, spring, kamada_kawai, planar, null
+arrows: True
