@@ -29,7 +29,7 @@ git clone https://github.com/enajx/NDP
 cd NDP 
 pip install -r requirements.txt
  ```   
- Next, use `train.py` and a experiment configuration file  `run_experiment.yaml`. To /experiments_paper folder for examples of configuration files for different tasks. 
+ Next, use `train.py` and a experiment configuration file  `run_experiment.yaml`. To experiments_paper folder for examples of configuration files for different tasks. 
  
  ```bash
 # train NDP to solve task defined in run_experiment.yaml, example is XOR gate
