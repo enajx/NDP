@@ -7,7 +7,7 @@ group: default
 notes experiment: null
 device: 0
 return_loss: 0
-environment: CartPole-v1
+environment: XOR_gate
 
 #########
 # Model #
@@ -22,22 +22,22 @@ coevolve_initial_embeddings: True
 
 # Graph model options
 undirected: True
-node_embedding_size: 5
+node_embedding_size: 1
 binary_connectivity: False
 additive_update: False
 
 # Growth model options
 persistent_observation_rollout: True
-number_of_growth_cycles: 5
+number_of_growth_cycles: 4
 initial_embeddings_random: False # If False, embeddings are ones
 shared_intial_graph_bool: True # If False, a new different initial graph is generated at each env evaluation
 shared_intial_embedding: True # If False, a new different embedding is at each env evaluation
 initial_sparsity: 1
-self_link_allowed_during_querying: True
+self_link_allowed_during_querying: False
 
 extra_nodes: -1 # netowrk size = observation_dim + action_dim + extra nodes
-network_thinking_time_extra_growth: 5 # during groth: steps on top of the diamater of the diamater of the network
-network_thinking_time_extra_rollout: 5 # during env rollout: on top of the diamater of the diamater of the network during the environment rollout phase
+network_thinking_time_extra_growth: 0 # during groth: steps on top of the diamater of the diamater of the network
+network_thinking_time_extra_rollout: 0 # during env rollout: on top of the diamater of the diamater of the network during the environment rollout phase
 
 # Embedding transformation after each propagation step (like GNCA)
 NN_transform_node_embedding_during_growth: True
@@ -52,13 +52,13 @@ fewer_nodes: False # netowrk size
 balanced_weights: False
 
 # MLPs parameters
-growth_model_last_layer_activated: True
+growth_model_last_layer_activated: False
 transform_model_last_layer_activated: True # If true embeddings are bounded [-1,1]
 mlp_weight_values_last_layer_activated: True # If true graph weights are bounded [-1,1]
 
-mlp_growth_hidden_layers_dims: [5]
-mlp_embedding_transform_hidden_layers_dims: [5]
-mlp_weight_values_hidden_layers_dims: [5]
+mlp_growth_hidden_layers_dims: [1]
+mlp_embedding_transform_hidden_layers_dims: [1]
+mlp_weight_values_hidden_layers_dims: [1]
 
 growth_model_bias: True
 mlp_weight_values_bias: True
@@ -70,22 +70,22 @@ recurrent_activation_function: "tanh" #  null
 # Training hyperparameters #
 ############################
 optimizer: CMAES
-sigma_init: 0.1
-maximise : True
-generations: 2000
+maximise: True
+sigma_init: 1
+generations: 100
 popsize: 64
 CMA_elitist: True
 minstd: 0.005
 x0_dist: U[-1,1]
 checkpoint_id: null
-nb_episode_evals: 10 # accounts for env stochasticity
+nb_episode_evals: 1 # accounts for env stochasticity
 nb_growth_evals: 1 # accounts for growth process stochasticity
 early_stopping: True
-early_stopping_conditions: { "generation": 1000, "objective_value": -300 } # (generations, objective_value)
+early_stopping_conditions: { "generation": 500, "objective_value": -3 } # (generations, objective_value)
 flattening_stopping: False
 flattening_stopping_conditions: { "min_generation": 1500, "last_generations": 500, "min_std": 5 } # if after min_generation the last_generations have a std lower than min_std, we stop
-evolution_feval_check_every: 200 # evaluate the fitness every n generations on a large number of environments to account for stochasticity of env
-evolution_feval_check_N: 100 # number of times env should be evaluated
+evolution_feval_check_every: 2000 # evaluate the fitness every n generations on a large number of environments to account for stochasticity of env
+evolution_feval_check_N: 10 # number of times env should be evaluated
 reward_if_graph_too_small: 200
 threads: -1
 

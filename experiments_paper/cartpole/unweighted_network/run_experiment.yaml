@@ -71,7 +71,7 @@ recurrent_activation_function: "tanh" #  null
 ############################
 optimizer: CMAES
 sigma_init: 0.1
-maximise : True
+maximise: True
 generations: 2000
 popsize: 512
 CMA_elitist: True
@@ -81,7 +81,7 @@ checkpoint_id: null
 nb_episode_evals: 10 # accounts for env stochasticity
 nb_growth_evals: 1 # accounts for growth process stochasticity
 early_stopping: True
-early_stopping_conditions: { "generation": 1000, "objective_value": -300 } # (generations, objective_value)
+early_stopping_conditions: { "generation": 1000, "objective_value": -200 } # (generations, objective_value)
 flattening_stopping: False
 flattening_stopping_conditions: { "min_generation": 1500, "last_generations": 500, "min_std": 5 } # if after min_generation the last_generations have a std lower than min_std, we stop
 evolution_feval_check_every: 200 # evaluate the fitness every n generations on a large number of environments to account for stochasticity of env
