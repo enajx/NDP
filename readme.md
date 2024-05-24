@@ -9,7 +9,7 @@
 
 </div>
  
-This reposistory contains the code to grow neural networks using the evolutionary version of the Neural Developmental Programs method described in our paper [Towards Self-Assembling Artificial Neural Networks through Neural Developmental Programs, 2023](https://direct.mit.edu/isal/proceedings/isal/35/80/116941). For the version using policy gradient see [this repository](https://github.com/enajx/NDP/tree/main/NDP-RL). 
+This reposistory contains the code to grow neural networks using the evolutionary version of the Neural Developmental Programs method described in our paper [Towards Self-Assembling Artificial Neural Networks through Neural Developmental Programs, 2023](https://direct.mit.edu/isal/proceedings/isal/35/80/116941). For the version using policy gradient see [here](https://github.com/enajx/NDP/tree/main/NDP-RL). 
 
 A talk presenting the paper at the 2023 Artificial Life Conference can be found [here](https://www.youtube.com/watch?v=HG0ahbACTf0). 
 <!-- 
